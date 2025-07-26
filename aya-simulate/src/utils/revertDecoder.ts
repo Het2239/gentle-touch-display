@@ -163,12 +163,13 @@ function getPanicReason(code: string): string {
 // Helper function to check if an error is a revert
 export function isRevertError(error: any): boolean {
   const errorMessage = error.message?.toLowerCase() || '';
+  const errorReason = error.reason?.toLowerCase() || '';
   return (
     errorMessage.includes('revert') ||
     errorMessage.includes('execution reverted') ||
     errorMessage.includes('transaction failed') ||
     error.code === 'CALL_EXCEPTION' ||
-    error.reason?.includes('revert')
+    errorReason.includes('revert')
   );
 }
 
